@@ -284,6 +284,7 @@ const getAllMessagesInChatWithDate = (SELECTED_CHATTER, date) => {
 		if (chat) { // this is a group chat
 			SQL = `
 				SELECT DISTINCT
+					message.ROWID,
 					message.text,
 					handle.id,
 					message.is_from_me,
@@ -305,6 +306,7 @@ const getAllMessagesInChatWithDate = (SELECTED_CHATTER, date) => {
 		} else { // this is one person
 			SQL = `
 				SELECT DISTINCT
+					message.ROWID,
 					message.text,
 					handle.id,
 					message.is_from_me,
@@ -348,7 +350,7 @@ const getAllMessagesInChatWithDate = (SELECTED_CHATTER, date) => {
 						row.text = rowText.join(``)
 					}
 					
-					arr.push({chatter: ((!row.is_from_me) ? row.id : `me`), text: row.text, date: new Date(row.date_x) });
+					arr.push({chatter: ((!row.is_from_me) ? row.id : `me`), text: row.text, date: new Date(row.date_x), messageId: row.ROWID });
 
 					if (row.is_from_me) {
 
