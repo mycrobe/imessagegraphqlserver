@@ -348,7 +348,7 @@ const getAllMessagesInChatWithDate = (SELECTED_CHATTER, date) => {
 						row.text = rowText.join(``)
 					}
 					
-					arr.push({chatter: ((!row.is_from_me) ? row.id : `me`), text: row.text });
+					arr.push({chatter: ((!row.is_from_me) ? row.id : `me`), text: row.text, date: new Date(row.date_x) });
 
 					if (row.is_from_me) {
 
